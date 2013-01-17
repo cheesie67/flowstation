@@ -1,0 +1,108 @@
+setThermoPackage( "CEA", "Air", "H2O",  "JP_7", "O2", "Jet-A(g)"  );
+
+FlowStation F1;
+FuelStation F2;
+FlowStation F6;
+FuelStation F7;
+
+
+F6.MNfroz = 0.;
+F1.MNfroz = 0.;
+setOption( "switchPrint", "TRUE" );
+setOption( "reconstitute", "EQUIL" );  //set this since it is currently not initialized in the code
+
+//F1.WAR = 0.0;
+
+F1.W = 100;
+
+//-------------------------------------------
+// Test the total sets with air
+//-------------------------------------------
+
+// test setTotalTP
+F1.setTotalTP( 518, 15 );
+//system( "cp temp.out test1.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << "rho is " << F1.rhot << endl;
+cout << endl << endl;
+
+real h1 = F1.ht;
+real S1 = F1.S;
+
+// test setTotal_hP
+real ht = F1.ht;
+F1.setTotalTP( 1000, 40 );
+real S2 = F1.S;
+F1.setTotal_hP( ht, 15 );
+//system( "cp temp.out test2.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "ht is " << F1.Tt << endl;
+cout << "Tt is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << endl << endl;
+
+cout << "Sdiff " << S2 - S1 << endl; 
+
+
+// test setTotalSP
+real S = F1.S;
+F1.setTotalTP( 1000, 40 );
+F1.setTotalSP( S, 15 );
+//system( "cp temp.out test3.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << endl << endl;
+
+
+
+F1.setTotalTP( 1100., 400. );
+
+F1.W = 100.;
+
+F1.MN = .3;
+
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+
+
+
+//test the ability to set WAR
+F1.WAR = .02;
+F1.setTotalTP( 1000, 15 );
+//system( "cp temp.out test4.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << endl << endl;
+
+//-------------------------------------------
+// Test the ability to burn
+//-------------------------------------------  
+
+//F2.init( "JP_7", 0., 518., 15., 0., 0., -608., 0., 0., 0., 0. ); //from 1675
+//F2.init( "JP_7", 18400, 0, 0, 0, 0, -608, 0, 0, 0, 0, 0 ); //from 1462
+F2.init( "Jet-A(g)", 18400., 518., 15., 0., 0., -608., 0., 0., 0., 0. );
+F1.setDryAir();
+F1.W = 100.;
+F1.setTotalTP( 1100, 400 );
+F2.Wfuel = 2.5;
+F1.burn( "F2", 1.0 );
+
+//system( "cp temp.out test5.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << "rho is " << F1.rhot << endl;
+cout << "gamt is " << F1.gamt << endl;
+cout << endl << endl;
+
