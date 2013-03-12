@@ -21,7 +21,7 @@ class TestSetTotals(unittest.TestCase):
     def test_setTotalTP(self):
         self.assertAlmostEqual(self.fs.Pt,15.0,places = 2 )
         self.assertAlmostEqual(self.fs.Tt,518,places = 2)
-        self.assertAlmostEqual(self.fs.ht, -6.76639,places = 4 ) #Tom says the ht values will be different
+        self.assertAlmostEqual(self.fs.ht, -6.32816,places = 4 ) #Tom says the ht values will be different
         self.assertAlmostEqual(self.fs.W,100,places = 2)
         self.assertAlmostEqual(self.fs.rhot,.07812,places = 4)
  
@@ -71,7 +71,7 @@ class TestBurn(unittest.TestCase):
         self.fs.setTotalTP(1100, 400 )
         self.fs.W = 100.
         self.fs.add_reactant( "Jet-A(g)")
-        self.fs.burn( "Jet-A(g)", 2.5, 0 )  
+        self.fs.burn( "Jet-A(g)", 2.5, -642 )  
 
     #all test cases use the same checks here, so just re-use
     def _assert(self): 
@@ -79,8 +79,8 @@ class TestBurn(unittest.TestCase):
         self.assertAlmostEqual(self.fs.W,102.5,places = 2 )
         self.assertAlmostEqual( self.fs.FAR, .025,places = 2 )   
         self.assertAlmostEqual(self.fs.Pt,400,places = 2)
-        self.assertAlmostEqual(self.fs.Tt,2685.5,places = 0)
-        self.assertAlmostEqual(self.fs.ht,132.4,places = 1) 
+        self.assertAlmostEqual(self.fs.Tt,2669.69,places = 0)
+        self.assertAlmostEqual(self.fs.ht,117.16,places = 1) 
         self.assertAlmostEqual(self.fs.rhot,.401845715,places = 2)
         self.assertAlmostEqual(self.fs.W,102.5,places=4)
         self.assertAlmostEqual(self.fs.gamt,1.293,places=3)
@@ -94,9 +94,8 @@ class TestStatics(unittest.TestCase):
         self.fs = CanteraFS()
         self.fs.W = 100.
         self.fs.setDryAir()
-        self.fs.setTotalTP(1100, 400 )
-       
-
+        self.fs.setTotalTP(1100, 400 )      
+        print (self.fs._flow)  
     #all test cases use the same checks here, so just re-use
     def _assert(self): 
  

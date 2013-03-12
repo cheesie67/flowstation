@@ -28,6 +28,7 @@ ideal_gas(name = "gri30_mix",
                    N  NH  NH2  NH3  NNH  NO  NO2  N2O  HNO  CN 
                    HCN  H2CN  HCNN  HCNO  HOCN  HNCO  NCO  N2  AR  C3H7 
                    C3H8  CH2CHO  CH3CHO """,
+                                      
       reactions = "all",
       kinetics = "GRI30",
       transport = "Mix",
@@ -64,7 +65,7 @@ species(name = "Jet-A(g)",
        )   
 
 species(name = "Air",
-    atoms = " N:1561680 O:419720 Ar:9340 C:395 ",
+    atoms = " N:1561700 O:419590 Ar:9370 C:320 ",
     #atoms = " N:156 O:42 ",
     thermo = ( 
         NASA( [  273.15,  1000.00], [  2.086921700E+00,   1.331496500E-01, 

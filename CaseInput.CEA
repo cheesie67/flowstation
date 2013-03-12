@@ -1,5 +1,6 @@
-setThermoPackage( "CEA", "Air", "H2O",  "JP_7", "O2", "Jet-A(g)"  );
+setThermoPackage( "CEA", "thermo.inp", "trans.inp", "Air", "H2O", "JP_7", "O2", "Jet-A(g)"  );
 
+//setThermoPackage( "CEA" ); //, "Air", "H2O" );
 FlowStation F1;
 FuelStation F2;
 FlowStation F6;
@@ -90,13 +91,17 @@ cout << endl << endl;
 
 //F2.init( "JP_7", 0., 518., 15., 0., 0., -608., 0., 0., 0., 0. ); //from 1675
 //F2.init( "JP_7", 18400, 0, 0, 0, 0, -608, 0, 0, 0, 0, 0 ); //from 1462
-F2.init( "Jet-A(g)", 18400., 518., 15., 0., 0., -608., 0., 0., 0., 0. );
+F2.init( "Jet-A(g)", 18400., 518., 15., 0., -642., -642., -642., -642., -642., 0. );
+F2.hFuel = -642.;
 F1.setDryAir();
 F1.W = 100.;
 F1.setTotalTP( 1100, 400 );
+system( "cp temp.out air.out" );
 F2.Wfuel = 2.5;
-F1.burn( "F2", 1.0 );
+//F1.burn( "F2", 1.0 );
+F1.setOption( "switchPrint", "TRUE" );
 
+F1.burn( "F2", 1.0 );
 //system( "cp temp.out test5.out" );
 cout << "Pt is " << F1.Pt << endl;
 cout << "Tt is " << F1.Tt << endl;
