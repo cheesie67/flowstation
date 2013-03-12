@@ -42,6 +42,8 @@ class CanteraFS(VariableTree):
 		
 	#intialize station	
 	def __init__(self): 
+		super(CanteraFS,self).__init__()
+		
 		self._species=[1.0,0,0,0,0,0,0,0]
 		self._mach_or_area = 0    
 		self._flow = importPhase( 'gri1000.cti' )
