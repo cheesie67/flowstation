@@ -17,7 +17,7 @@ class BasicModel(Assembly):
         # Add to driver's workflow
         self.driver.workflow.add('Duct1')
         self.driver.workflow.add('Duct2')
-        self.connect("Duct1.FSout","Duct2.FSin")
+        self.connect("Duct1.FSout", "Duct2.FSin")
         
 Model = BasicModel()
 Model.Duct1.dP=.05

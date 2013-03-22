@@ -159,7 +159,7 @@ class CanteraFS(VariableTree):
 		self.rhot = self._flow.density()*.0624
 		self.gamt = self._flow.cp_mass()/self._flow.cv_mass()          
 			
-        def copy( self, FS2 ):
+	def copy( self, FS2 ):
         	self.ht = FS2.ht
         	self.Tt = FS2.Tt
         	self.Pt = FS2.Pt
