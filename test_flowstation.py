@@ -29,7 +29,6 @@ class TestSetTotals(unittest.TestCase):
         self.assertAlmostEqual(self.new_fs.Tt, 518)
         self.assertAlmostEqual(self.new_fs.Pt, 15)
 
-
      #all test function have to start with "test_" as the function name
     def test_setTotalTP(self):
         self.assertAlmostEqual(self.fs.Pt, 15.0, places=2)

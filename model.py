@@ -23,5 +23,5 @@ Model = BasicModel()
 Model.Duct1.dP=.05
 Model.Duct2.dP=.05
 Model.run()
-print "Exit Pressure " + str( Model.Duct1.FSout.Pt ) + " " + str( Model.Duct1.FSin.Pt )+" " +str(Model.Duct1.dP )
-print "Exit Pressure " + str( Model.Duct2.FSout.Pt ) + " " + str( Model.Duct2.FSin.Pt )+" " +str(Model.Duct2.dP )
+print "Exit Pressure " + str(Model.Duct1.FSout.Pt) + " " + str(Model.Duct1.FSin.Pt)+" " +str(Model.Duct1.dP)
+print "Exit Pressure " + str(Model.Duct2.FSout.Pt) + " " + str(Model.Duct2.FSin.Pt)+" " +str(Model.Duct2.dP)
