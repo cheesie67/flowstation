@@ -11,6 +11,7 @@ class TestSetTotals(unittest.TestCase):
         """Initialization function called before every test function""" 
         self.fs = CanteraFS()
         self.fs.W = 100
+        self.fs.setDryAir()
         self.fs.setTotalTP(518, 15)
 
     def tearDown(self): 
