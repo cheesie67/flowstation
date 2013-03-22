@@ -184,7 +184,7 @@ class CanteraFS(VariableTree):
             if fuel == self.reactants[i]:
                 self._species[i]=(flow_1*self._species[i]+Wfuel)/ self.W
             else:
-                self._species[i]=(flow_1*self._species[i])/ self.Wfuel
+                self._species[i]=(flow_1*self._species[i])/ self.W
         print self._species        
         ht=(flow_1 * ht + Wfuel * hfuel)/ self.W
         print ht
