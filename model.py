@@ -1,5 +1,6 @@
 from openmdao.main.api import Assembly
-from simple import *
+from duct import Duct
+
 
 class BasicModel(Assembly):
     """A basic OpenMDAO Model"""
@@ -12,7 +13,6 @@ class BasicModel(Assembly):
 
         # Create Duct component instances
         self.add('Duct2', Duct())
-
 
         # Add to driver's workflow
         self.driver.workflow.add('Duct1')
