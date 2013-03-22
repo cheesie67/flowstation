@@ -18,6 +18,17 @@ class TestSetTotals(unittest.TestCase):
         """Clean up function called after every test function"""
         pass #nothing to do for this test
 
+    def test_copyFS(self): 
+
+        #print "TESTING"
+
+        self.new_fs = CanteraFS()
+
+        self.new_fs.copy(self.fs)
+
+        self.assertAlmostEqual(self.new_fs.Tt, 518)
+        self.assertAlmostEqual(self.new_fs.Pt, 15)
+
      #all test function have to start with "test_" as the function name
     def test_setTotalTP(self):
         self.assertAlmostEqual(self.fs.Pt, 15.0, places=2)
@@ -76,7 +87,7 @@ class TestBurn(unittest.TestCase):
 
     #all test cases use the same checks here, so just re-use
     def _assert(self): 
-        print (self.fs._flow)  
+        #print (self.fs._flow)  
         self.assertAlmostEqual(self.fs.W, 102.5, places=2)
         self.assertAlmostEqual(self.fs.FAR, .025, places=2)   
         self.assertAlmostEqual(self.fs.Pt, 400, places=2)
@@ -96,7 +107,7 @@ class TestStatics(unittest.TestCase):
         self.fs.W = 100.
         self.fs.setDryAir()
         self.fs.setTotalTP(1100, 400)      
-        print (self.fs._flow)  
+        #print (self.fs._flow)  
 
     #all test cases use the same checks here, so just re-use
     def _assert(self): 
