@@ -28,28 +28,30 @@ cout << "Tt is " << F1.Tt << endl;
 cout << "ht is " << F1.ht << endl;
 cout << "W  is  " << F1.W << endl;
 cout << "rho is " << F1.rhot << endl;
+cout << "gamt is " << F1.gamt << endl;
 cout << endl << endl;
 
 real h1 = F1.ht;
-real S1 = F1.S;
+real S1 = F1.s;
 
 // test setTotal_hP
 real ht = F1.ht;
 F1.setTotalTP( 1000, 40 );
-real S2 = F1.S;
+real S2 = F1.s;
+real h2 = F1.ht;
 F1.setTotal_hP( ht, 15 );
 //system( "cp temp.out test2.out" );
 cout << "Pt is " << F1.Pt << endl;
-cout << "ht is " << F1.Tt << endl;
-cout << "Tt is " << F1.ht << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
 cout << "W  is  " << F1.W << endl;
 cout << endl << endl;
 
 cout << "Sdiff " << S2 - S1 << endl; 
-
+cout << "hdiff " << h2 - h1 << endl;
 
 // test setTotalSP
-real S = F1.S;
+real S = F1.s;
 F1.setTotalTP( 1000, 40 );
 F1.setTotalSP( S, 15 );
 //system( "cp temp.out test3.out" );
@@ -72,8 +74,25 @@ cout << F1.Ts << endl;
 cout << F1.Aphy << endl;
 cout << F1.rhos << endl;
 cout << F1.Vflow << endl;
+cout << F1.gams << endl;
 
+F1.MN = 1.;
 
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
+
+F1.MN = 1.3;
+
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
 
 //test the ability to set WAR
 F1.WAR = .02;
@@ -110,4 +129,45 @@ cout << "W  is  " << F1.W << endl;
 cout << "rho is " << F1.rhot << endl;
 cout << "gamt is " << F1.gamt << endl;
 cout << endl << endl;
+
+
+F1.MN = .3;
+cout << endl;
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
+cout << endl;
+F1.MN = 1.;
+
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
+cout << endl;
+F1.MN = 1.3;
+
+cout << F1.Ps << endl;
+cout << F1.Ts << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
+cout << endl;
+
+//test the ability to set WAR
+F1.WAR = .02;
+F1.setTotalTP( 1000, 15 );
+//system( "cp temp.out test4.out" );
+cout << "Pt is " << F1.Pt << endl;
+cout << "Tt is " << F1.Tt << endl;
+cout << "ht is " << F1.ht << endl;
+cout << "W  is  " << F1.W << endl;
+cout << endl << endl;
+
+
 
