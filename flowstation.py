@@ -47,6 +47,7 @@ class CanteraFS(VariableTree):
                 self._flow = importPhase( 'gri1000.cti' )
                 self._flowS = importPhase( 'gri1000.cti' )
                 self.setDryAir()
+                self.setTotalTP( 518, 15 )
                 
         #trigger action on Mach
         def _Mach_changed(self):

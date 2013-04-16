@@ -1,5 +1,5 @@
 from openmdao.main.api import Assembly
-from simple import *
+from duct import *
 
 class BasicModel(Assembly):
     """A basic OpenMDAO Model"""

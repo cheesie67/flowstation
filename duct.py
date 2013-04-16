@@ -16,8 +16,7 @@ class Duct(Component):
         self.FSout = CanteraFS()
 
     def execute(self):
-        self.FSin.W = 100
-        self.FSin.setTotalTP(518, 15)    
+        self.FSin.W = 100 
         self.FSout.copy(self.FSin)
         #print "self.dp " + str(self.dP)
         self.FSout.setTotal_hP(self.FSin.ht, self.FSin.Pt*(1 - self.dP))
