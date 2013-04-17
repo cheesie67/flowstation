@@ -90,7 +90,7 @@ class CanteraFS(VariableTree):
                 self.FAR = 0
                 self._flow.setMassFractions("Air:"+str((1)/(1+WAR))+" H2O:"+str((WAR)/(1+WAR)))
                 self._species = len(self.reactants)*[0,]
-                self._species[0]=(1-WAR)/(1+WAR)
+                self._species[0]=1/(1+WAR)
                 self._species[1]=(WAR)/(1+WAR)
                 self.setStatic()
                 self.trigger = 0
@@ -142,12 +142,16 @@ class CanteraFS(VariableTree):
         #add another station to this one
         #mix enthalpies and keep pressure and this stations value
         def add( self, FS2 ):
+                air1 = self.W * ( 1. / ( 1. + self.FAR + self.WAR ))
+                air2 = FS2.W *( 1. / ( 1 + FS2.WAR + FS2.FAR ))
+                self.FAR = ( air1 * self.FAR + air2*FS2.FAR )/( air1 + air2 )
+                self.WAR = ( air1 * self.WAR + air2*FS2.WAR )/( air1 + air2 )
                 temp =""
-                for i in range(0,len(reactants)):
+                for i in range(0,len(self.reactants)):
                         self._species[i]=( self.W*self._species[i]+FS2.W*FS2._species[i])/( self.W + FS2.W )
-                        temp = temp+reactants[i]+":"+str(self._species[i])+" "
+                        temp = temp+self.reactants[i]+":"+str(self._species[i])+" "
                 self._flow.setMassFractions(temp)	
-                self.ht = (self.W*self.ht+FS2.W+FS2.ht)/(self.W+FS2.W)
+                self.ht = (self.W*self.ht+FS2.W*FS2.ht)/(self.W+FS2.W)
                 self._flow.setMassFractions(temp)
                 self.W = self.W +(FS2.W )
                 self._flow.set(H=self.ht/0.0004302099943161011,P=self.Pt*6894.75729)

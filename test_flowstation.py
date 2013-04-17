@@ -91,7 +91,33 @@ class TestBurn(unittest.TestCase):
             self.assertAlmostEqual(self.fs.Tt, 3979.6, places=0)
             self.assertAlmostEqual(self.fs.ht, 65.405, places=1) 
             self.assertAlmostEqual(self.fs.rhot, .249, places=2)
-            self.assertAlmostEqual(self.fs.gamt, 1.266, places=3)       
+            self.assertAlmostEqual(self.fs.gamt, 1.266, places=3)  
+            
+    def test_add_vitiated(self):
+            self.fs = CanteraFS()
+            self.fs.setDryAir()
+            self.fs.setTotalTP(1100, 400)
+            self.fs.W = 100.
+            self.fs.add_reactant("Jet-A(g)")
+            self.fs.burn("Jet-A(g)", 2.5, -642)
+            self.fs1 = CanteraFS()
+            self.fs1.setDryAir()
+            self.fs1.W = 5.
+            self.fs1.setWAR( .02 )
+            self.fs1.setTotalTP(1100, 400)
+            self.fs.add(self.fs1)
+            self.assertAlmostEqual(self.fs.Tt, 2602.7, places=1)
+            self.assertAlmostEqual(self.fs.W, 107.5, places=2)
+            self.assertAlmostEqual(self.fs.FAR, .0238, places=4)
+            self.assertAlmostEqual(self.fs.WAR, .000934, places=4)
+            self.assertAlmostEqual(self.fs.Pt, 400, places=2)
+            self.fs1.copy(self.fs)
+            self.assertAlmostEqual(self.fs1.Tt, 2602.7, places=1)
+            self.assertAlmostEqual(self.fs1.W, 107.5, places=2)
+            self.assertAlmostEqual(self.fs1.FAR, .0238, places=4)
+            self.assertAlmostEqual(self.fs1.WAR, .000934, places=4)
+            self.assertAlmostEqual(self.fs1.Pt, 400, places=2)            
+
 
 class TestStatics(unittest.TestCase):
     def setUp(self):

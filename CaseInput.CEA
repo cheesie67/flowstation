@@ -123,12 +123,13 @@ F1.setOption( "switchPrint", "TRUE" );
 F1.burn( "F2", 1.0 );
 //system( "cp temp.out test5.out" );
 cout << "Pt is " << F1.Pt << endl;
-cout << "Tt is " << F1.Tt << endl;
+cout << "Tt is " << F1.Tt*5./9. << endl;
 cout << "ht is " << F1.ht << endl;
 cout << "W  is  " << F1.W << endl;
 cout << "rho is " << F1.rhot << endl;
 cout << "gamt is " << F1.gamt << endl;
 cout << endl << endl;
+
 
 
 F1.MN = .3;
@@ -159,6 +160,33 @@ cout << F1.Vflow << endl;
 cout << F1.gams << endl;
 cout << endl;
 
+FlowStation F3;
+F3.W = 5.;
+F3.setDryAir();
+F3.WAR = .02;
+F3.setTotalTP( 1100, 400 );
+cout << F1.Tt << endl;
+F1.setOption( "switchPrint", TRUE );
+F1.add( "F3" );
+
+cout << endl;
+cout << F1.W << endl;
+cout << F1.FAR << endl;
+cout << F1.WAR << endl;
+cout << F1.Pt << endl;
+cout << F1.Tt << endl;
+cout << F1.Aphy << endl;
+cout << F1.rhos << endl;
+cout << F1.Vflow << endl;
+cout << F1.gams << endl;
+cout << endl;
+//cout << F1.totalCompAll();
+
+quit();
+
+//test the ability to add in flows
+
+
 //test the ability to set WAR
 F1.WAR = .02;
 F1.setTotalTP( 1000, 15 );
@@ -171,3 +199,4 @@ cout << endl << endl;
 
 
 
+//Test add 
